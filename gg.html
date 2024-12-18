@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!DOCTYPE html>
+<html>
+<body>
+
+<audio controls autoplay>
+  <source src="song.mp3" type="audio/ogg">
+  <source src="song.mp3" type="audio/mpeg">
+</audio>
+
+</body>
+</html>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Christmas🎅🎄</title>
+    <style>
+        body {
+            background-color: #1e1e1e;
+            font-family: 'Arial', sans-serif;
+            color: #fff;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+        header {
+            background-color: #c0392b;
+            padding: 20px;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px #000;
+            animation: fadeIn 2s;
+        }
+        .container {
+            position: relative;
+            margin: 50px auto;
+            width: 80%;
+            max-width: 600px;
+            background-color: rgba(0, 128, 0, 0.8);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            animation: slideIn 1s;
+        }
+        .tree {
+            width: 150px;
+            margin: 20px 0;
+            animation: bounce 1s infinite alternate;
+            transition: transform 0.3s;
+        }
+        .tree:hover {
+            transform: rotate(10deg);
+        }
+        .message {
+            font-size: 1.5em;
+            margin: 20px 0;
+        }
+        footer {
+            background-color: #c0392b;
+            color: white;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+        button {
+            background-color: #ffcc00;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #ff9900;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes slideIn {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        @keyframes bounce {
+            from { transform: translateY(0); }
+            to { transform: translateY(-10px); }
+        }
+        .snowflake {
+            position: absolute;
+            top: -10%;
+            color: #ffffff;
+            font-size: 1em;
+            pointer-events: none;
+            animation: fall linear infinite;
+        }
+        @keyframes fall {
+            to {
+                transform: translateY(100vh);
+            }
+        }
+        /* Modal Styles */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed;
+            z-index: 1; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgba(0, 0, 0, 0.7); /* Black w/ opacity */
+            padding-top: 60px;
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto; /* 15% from the top and centered */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%; /* Could be more or less, depending on screen size */
+            color: #000;
+            text-align: center;
+            border-radius: 10px;
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        Welcome to Christmas Magic!
+    </header>
+    <div class="container">
+        <img src="https://upload.wikimedia.org/wikipedia/commons /thumb/0/0e/Christmas_tree.svg/1200px-Christmas_tree.svg.png" alt="Christmas Tree" class="tree">
+        <div class="message">
+            May your holiday season be filled with joy and laughter! 🎄
+        </div>
+        <button onclick="openModal()">Get a Holiday Wish!</button>
+    </div>
+    
+
+    <!-- Modal -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <p id="holidayWish"></p>
+        </div>
+    </div>
+
+    <script>
+        // Create snowflakes
+        function createSnowflake() {
+            const snowflake = document.createElement('div');
+            snowflake.className = 'snowflake';
+            snowflake.innerHTML = '❄';
+            snowflake.style.left = Math.random() * 100 + 'vw';
+            snowflake.style.fontSize = Math.random() * 1.5 + 0.5 + 'em';
+            snowflake.style.animationDuration = Math.random() * 3 + 2 + 's'; // Random fall duration
+            document.body.appendChild(snowflake);
+
+            // Remove snowflake after it falls
+            setTimeout(() => {
+                snowflake.remove();
+            }, 5000);
+        }
+
+        // Generate snowflakes every 300ms
+        setInterval(createSnowflake, 300);
+
+        // Function to open the modal and display a holiday wish
+        function openModal() {
+            const wishes = [
+                'Wishing you a Merry Christmas filled with love and joy!',
+                'May your days be merry and bright!',
+                'Here’s to a season of warmth, comfort, and good cheer!',
+                'Wishing you peace, joy, and happiness this holiday season!',
+                'May your holiday be wrapped in warmth and filled with love!'
+            ];
+            const randomWish = wishes[Math.floor(Math.random() * wishes.length)];
+            document.getElementById('holidayWish').innerText = randomWish;
+            document.getElementById('myModal').style.display = "block";
+        }
+
+        // Function to close the modal
+        function closeModal() {
+            document.getElementById('myModal').style.display = "none";
+        }
+
+        // Close the modal when the user clicks anywhere outside of the modal
+        window.onclick = function(event) {
+            const modal = document.getElementById('myModal');
+            if (event.target === modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>
