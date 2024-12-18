@@ -1,24 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!DOCTYPE html>
-<html>
-<body>
-
-<audio controls autoplay>
-  <source src="song.mp3" type="audio/ogg">
-  <source src="song.mp3" type="audio/mpeg">
-</audio>
-
-</body>
-</html>
-
+    <audio controls autoplay>
+        <source src="song.mp3" type="audio/ogg">
+        <source src="song.mp3" type="audio/mpeg">
+      </audio>
+      
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Christmas🎅🎄</title>
     <style>
         body {
-            background-color: #1e1e1e;
+            background-color: #c58181;
             font-family: 'Arial', sans-serif;
             color: #fff;
             text-align: center;
@@ -89,9 +82,26 @@
             from { transform: translateY(0); }
             to { transform: translateY(-10px); }
         }
+        /* Twinkling Lights */
+        .light {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            position: absolute;
+            animation: twinkle 1.5s infinite, move 1s infinite alternate;
+        }
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+        @keyframes move {
+            0% { transform: translate(0, 0); }
+            50% { transform: translate(2px, -2px); }
+            100% { transform: translate(0, 0); }
+        }
+        /* Snowflake Styles */
         .snowflake {
             position: absolute;
-            top: -10%;
             color: #ffffff;
             font-size: 1em;
             pointer-events: none;
@@ -141,17 +151,16 @@
 </head>
 <body>
     <header>
-        Welcome to Christmas Magic!
+        Happy Merry Christmas!
     </header>
     <div class="container">
-        <img src="https://upload.wikimedia.org/wikipedia/commons /thumb/0/0e/Christmas_tree.svg/1200px-Christmas_tree.svg.png" alt="Christmas Tree" class="tree">
-        <div class="message">
-            May your holiday season be filled with joy and laughter! 🎄
-        </div>
-        <button onclick="openModal()">Get a Holiday Wish!</button>
+        <img src="box.jpg" alt="Christmas Tree" class="tree">
+        <div class="message"></div>
+        <button onclick="openModal()">Click Here!</button>
     </div>
-    
-
+    <footer>
+        <strong>ChiongchongDingdong</strong>
+    </footer>
     <!-- Modal -->
     <div id="myModal" class="modal">
         <div class="modal-content">
@@ -206,6 +215,23 @@
                 modal.style.display = "none";
             }
         }
+
+        // Function to create twinkling lights
+        function createLights() {
+            const colors = ['red', 'green', 'blue', 'yellow', 'orange', 'purple'];
+            for (let i = 0; i < 20; i++) {
+                const light = document.createElement('div');
+                light.className = 'light';
+                light.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                light.style.top = Math.random() * 50 + 'px'; // Random vertical position
+                light.style.left = Math.random() * 100 + 'vw'; // Random horizontal position
+                light.style.animationDuration = (Math.random() * 1.5 + 1) + 's'; // Random twinkle duration
+                document.body.appendChild(light);
+            }
+        }
+
+        // Call the function to create lights
+        createLights();
     </script>
 </body>
 </html>
