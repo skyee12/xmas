@@ -13,7 +13,7 @@
             margin: 0;
             padding: 0;
             overflow: hidden;
-            background-image: url('mas.jpg'); /* Add background image */
+            background-image: url('mas.jpg'); /* Ensure the image path is correct */
             background-size: cover;
             background-position: center;
             position: relative;
@@ -31,11 +31,7 @@
             margin: 50px auto;
             width: 80%;
             max-width: 600px;
-            background-color: rgba(0, 128, 0, 0.8);
-            border-radius: 15px;
             padding: 30px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-            animation: slideIn 1s;
             z-index: 10;
         }
         .tree {
@@ -76,14 +72,23 @@
             from { opacity: 0; }
             to { opacity: 1; }
         }
-        @keyframes slideIn {
-            from { transform: translateY(-50px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
         @keyframes bounce {
             from { transform: translateY(0); }
             to { transform: translateY(-10px); }
         }
+        /* Snowflakes falling from top */
+        .snowflake {
+            position: absolute;
+            color: #ffffff;
+            font-size: 1.5em;
+            pointer-events: none;
+            animation: fall linear infinite;
+        }
+        @keyframes fall {
+            0% { transform: translateY(-100vh); }
+            100% { transform: translateY(100vh); }
+        }
+        /* Twinkle Lights RGB Animation */
         .light {
             width: 10px;
             height: 10px;
@@ -92,26 +97,18 @@
             animation: twinkle 1.5s infinite, move 1s infinite alternate;
         }
         @keyframes twinkle {
-            0%, 100% { opacity: 0.5; }
-            50% { opacity: 1; }
+            0% { opacity: 0.5; background-color: rgb(255, 0, 0); }
+            25% { opacity: 1; background-color: rgb(0, 255, 0); }
+            50% { opacity: 0.5; background-color: rgb(0, 0, 255); }
+            75% { opacity: 1; background-color: rgb(255, 255, 0); }
+            100% { opacity: 0.5; background-color: rgb(255, 0, 255); }
         }
         @keyframes move {
             0% { transform: translate(0, 0); }
             50% { transform: translate(2px, -2px); }
             100% { transform: translate(0, 0); }
         }
-        .snowflake {
-            position: absolute;
-            color: #ffffff;
-            font-size: 1em;
-            pointer-events: none;
-            animation: fall linear infinite;
-        }
-        @keyframes fall {
-            to {
-                transform: translateY(100vh);
-            }
-        }
+        /* Modal styles */
         .modal {
             display: none; 
             position: fixed;
@@ -194,7 +191,7 @@
             const snowflake = document.createElement('div');
             snowflake.className = 'snowflake';
             snowflake.innerHTML = '❄';
-            snowflake.style.left = Math.random() * 100 + 'vw';
+            snowflake.style.left = Math.random() * 100 + 'vw'; // Random position horizontally
             snowflake.style.fontSize = Math.random() * 1.5 + 0.5 + 'em';
             snowflake.style.animationDuration = Math.random() * 3 + 2 + 's'; // Random fall duration
             document.body.appendChild(snowflake);
@@ -239,19 +236,17 @@
 
         // Function to create twinkling lights
         function createLights() {
-            const colors = ['red', 'green', 'blue', 'yellow', 'orange', 'purple'];
             for (let i = 0; i < 20; i++) {
                 const light = document.createElement('div');
                 light.className = 'light';
-                light.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
                 light.style.top = Math.random() * 50 + 'px';
                 light.style.left = Math.random() * 100 + 'vw';
-                light.style.animationDuration = (Math.random() * 1.5 + 1) + 's'; 
+                light.style.animationDuration = (Math.random() * 3 + 2) + 's';
                 document.body.appendChild(light);
             }
         }
 
-        // Call the function to create lights
+        // Generate twinkling lights on page load
         createLights();
     </script>
 </body>
