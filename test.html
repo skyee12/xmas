@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Christmas🎅🎄</title>
+    <style>
+        body {
+            background-color: #c58181;  
+            font-family: 'Arial', sans-serif;
+            color: #fff;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-image: url('mas.jpg'); /* Keep the original background */
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        header {
+            background-color: rgba(192, 57, 43, 0.8);
+            padding: 20px;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px #000;
+            animation: fadeIn 2s;
+            z-index: 10;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            margin-top: 50px;
+        }
+
+        .card-container {
+            perspective: 1000px;
+            margin: 0 20px;
+        }
+
+        .card {
+            width: 300px;
+            height: 400px;
+            background-color: #f1c40f;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+            transform-style: preserve-3d;
+            transition: transform 1s;
+            cursor: pointer;
+        }
+
+        .card.open {
+            transform: rotateY(180deg); /* Rotate the card 180 degrees on the Y-axis */
+        }
+
+        .card .front, .card .back {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 10px;
+            backface-visibility: hidden; /* Hide the back side when rotated */
+        }
+
+        .card .front {
+            background-color: #f1c40f;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 24px;
+        }
+
+        .card .back {
+            background-color: #f8f8f8;
+            color: #333;
+            transform: rotateY(180deg); /* Initially hide the back by rotating it */
+            padding: 20px;
+            font-size: 18px;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .snowflake {
+            position: absolute;
+            color: #ffffff;
+            font-size: 1.5em;
+            pointer-events: none;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(-100vh); }
+            100% { transform: translateY(100vh); }
+        }
+
+        /* Twinkle Lights Effect */
+        .twinkle {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: #fff;
+            opacity: 0;
+            animation: twinkle 1.5s infinite alternate;
+        }
+
+        @keyframes twinkle {
+            0% {
+                opacity: 0;
+                transform: scale(0.8);
+                background-color: red;
+            }
+            25% {
+                opacity: 1;
+                transform: scale(1);
+                background-color: green;
+            }
+            50% {
+                opacity: 0;
+                transform: scale(0.8);
+                background-color: blue;
+            }
+            75% {
+                opacity: 1;
+                transform: scale(1);
+                background-color: yellow;
+            }
+            100% {
+                opacity: 0;
+                transform: scale(0.8);
+                background-color: pink;
+            }
+        }
+
+        /* Modal */
+        .modal {
+            display: none; 
+            position: fixed;
+            z-index: 10;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto; 
+            background-color: rgba(0, 0, 0, 0.7);
+            padding-top: 60px;
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            color: #000;
+            text-align: center;
+            border-radius: 10px;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        /* Long box for "To Riya" */
+        .to-riya {
+            position: fixed;
+            bottom: 10px; /* Adjust the distance from the bottom */
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40%; /* Set the width to a smaller value */
+            background-color: rgba(192, 57, 43, 0.8); /* Same as header */
+            color: white;
+            font-size: 1.8em;
+            padding: 15px;
+            text-align: center;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        Merry Christmas Cards!
+    </header>
+
+    <div class="container">
+        <!-- Card 1 -->
+        <div class="card-container">
+            <div class="card" onclick="flipCard(1)">
+                <div class="front">
+                    Card 1
+                </div>
+                <div class="back">
+                    <h2>Holiday Wishes #1</h2>
+                    <p>Wishing you a Merry Christmas filled with love and joy!</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="card-container">
+            <div class="card" onclick="flipCard(2)">
+                <div class="front">
+                    Card 2
+                </div>
+                <div class="back">
+                    <h2>Holiday Wishes #2</h2>
+                    <p>May your days be merry and bright!</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="card-container">
+            <div class="card" onclick="flipCard(3)">
+                <div class="front">
+                    Card 3
+                </div>
+                <div class="back">
+                    <h2>Holiday Wishes #3</h2>
+                    <p>Here's to a season of warmth, comfort, and good cheer!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- "To Riya" Box -->
+    <div>
+        <strong><To:Riya></To:Riya></strong>
+    <div>
+   
+    <script>
+        // Function to open and flip the card
+        function flipCard(cardNumber) {
+            const card = document.querySelectorAll('.card')[cardNumber - 1];
+            card.classList.toggle('open'); // Toggle the class to flip the card
+        }
+
+        // Create snowflakes
+        function createSnowflake() {
+            const snowflake = document.createElement('div');
+            snowflake.className = 'snowflake';
+            snowflake.innerHTML = '❄';
+            snowflake.style.left = Math.random() * 100 + 'vw'; // Random position horizontally
+            snowflake.style.fontSize = Math.random() * 1.5 + 0.5 + 'em';
+            snowflake.style.animationDuration = Math.random() * 3 + 2 + 's'; // Random fall duration
+            document.body.appendChild(snowflake);
+
+            // Remove snowflake after it falls
+            setTimeout(() => {
+                snowflake.remove();
+            }, 5000);
+        }
+
+        // Generate snowflakes every 300ms
+        setInterval(createSnowflake, 300);
+
+        // Create twinkling lights
+        function createTwinkleLight() {
+            const light = document.createElement('div');
+            light.className = 'twinkle';
+            light.style.left = Math.random() * 100 + 'vw';
+            light.style.top = Math.random() * 100 + 'vh';
+            document.body.appendChild(light);
+
+            // Remove light after some time
+            setTimeout(() => {
+                light.remove();
+            }, 1500);
+        }
+
+        // Generate twinkling lights every 200ms
+        setInterval(createTwinkleLight, 200);
+    </script>
+</body>
+</html>
